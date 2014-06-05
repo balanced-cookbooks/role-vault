@@ -20,14 +20,6 @@ platforms:
   - name: ubuntu-12.04
 
 suites:
-  - name: test
+  - name: default
     run_list:
-    - recipe[role-vault::test]
-    
-  - name: live
-    run_list:
-    - recipe[role-vault::live]
-
-  - name: integration
-    run_list:
-    - recipe[role-vault::integration]
+    - recipe[role-vault]

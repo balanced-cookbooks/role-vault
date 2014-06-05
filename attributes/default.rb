@@ -1,1 +1,1 @@
-default['poise-appenv']['cookbook'] = 'role-vault'
+default['sentry']['enabled'] = false
