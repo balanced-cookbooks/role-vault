@@ -1,0 +1,33 @@
+---
+driver:
+  name: vagrant
+  customize:
+    memory: 1024
+
+provisioner:
+  name: chef_solo
+  attributes:
+      citadel:
+        access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+        secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+      vault:
+        aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+        aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+      sentry:
+        enabled: false
+
+platforms:
+  - name: ubuntu-12.04
+
+suites:
+  - name: test
+    run_list:
+    - recipe[role-vault::test]
+    
+  - name: live
+    run_list:
+    - recipe[role-vault::live]
+
+  - name: integration
+    run_list:
+    - recipe[role-vault::integration]
